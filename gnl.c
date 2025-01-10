@@ -3,7 +3,7 @@
 
 #include "gnl.h"
 
-static char *_get_next_line(int fd, char **s_buf)
+static char	*_get_next_line(int fd, char **s_buf)
 {
 	int		status;
 
@@ -26,7 +26,7 @@ static char *_get_next_line(int fd, char **s_buf)
 
 static char	*get_next_line_op(gnl_op op, int fd)
 {
-    static char	*s_buf[BUFFER_COUNT];
+	static char	*s_buf[BUFFER_COUNT];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

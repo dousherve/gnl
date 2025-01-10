@@ -5,7 +5,7 @@
 
 #include "gnl.h"
 
-int read_and_append(int fd, char **buffer)
+int	read_and_append(int fd, char **buffer)
 {
 	char	tmp_buf[BUFFER_SIZE + 1];
 	char	*new_buf;
@@ -14,7 +14,7 @@ int read_and_append(int fd, char **buffer)
 
 	bytes_read = read(fd, tmp_buf, BUFFER_SIZE);
 	if (bytes_read <= 0)
-		return bytes_read; // Return 0 for EOF, -1 for error
+		return (bytes_read); // Return 0 for EOF, -1 for error
 
 	tmp_buf[bytes_read] = '\0';
 	len = *buffer ? strlen(*buffer) : 0;
@@ -38,13 +38,13 @@ int read_and_append(int fd, char **buffer)
 	return (1);
 }
 
-char *extract_line(char **buffer)
+char	*extract_line(char **buffer)
 {
 	char	*newline_pos;
 	char	*line;
 	char	*remaining;
 	size_t	line_len;
-	
+
 	newline_pos = strchr(*buffer, '\n');
 	if (newline_pos)
 		line_len = newline_pos - *buffer + 1;
@@ -53,7 +53,7 @@ char *extract_line(char **buffer)
 
 	line = strndup(*buffer, line_len);
 	if (!line)
-		return NULL;
+		return (NULL);
 
 	remaining = newline_pos ? strdup(newline_pos + 1) : NULL;
 	safe_free(buffer);
@@ -62,7 +62,7 @@ char *extract_line(char **buffer)
 	return (line);
 }
 
-void safe_free(char **ptr)
+void	safe_free(char **ptr)
 {
 	if (*ptr)
 	{
@@ -70,4 +70,3 @@ void safe_free(char **ptr)
 		*ptr = NULL;
 	}
 }
-
