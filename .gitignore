@@ -1,0 +1,5 @@
+**/obj
+
+libgnl.a
+
+.DS_Store
